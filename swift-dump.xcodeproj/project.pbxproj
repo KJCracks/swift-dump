@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AD0EF2321D44C4E3002A594B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0EF2311D44C4E3002A594B /* main.swift */; };
+		AD622ABD1D4B6FB10041A19B /* CwlDemangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD622ABC1D4B6FB10041A19B /* CwlDemangle.swift */; };
+		AD622ABF1D4B9D6C0041A19B /* swift-objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD622ABE1D4B9D6C0041A19B /* swift-objects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		AD0EF22E1D44C4E3002A594B /* swift-dump */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "swift-dump"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0EF2311D44C4E3002A594B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AD622ABC1D4B6FB10041A19B /* CwlDemangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDemangle.swift; sourceTree = "<group>"; };
+		AD622ABE1D4B9D6C0041A19B /* swift-objects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "swift-objects.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,9 @@
 		AD0EF2301D44C4E3002A594B /* swift-dump */ = {
 			isa = PBXGroup;
 			children = (
+				AD622ABC1D4B6FB10041A19B /* CwlDemangle.swift */,
 				AD0EF2311D44C4E3002A594B /* main.swift */,
+				AD622ABE1D4B9D6C0041A19B /* swift-objects.swift */,
 			);
 			path = "swift-dump";
 			sourceTree = "<group>";
@@ -94,6 +100,7 @@
 				TargetAttributes = {
 					AD0EF22D1D44C4E3002A594B = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -120,6 +127,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD0EF2321D44C4E3002A594B /* main.swift in Sources */,
+				AD622ABD1D4B6FB10041A19B /* CwlDemangle.swift in Sources */,
+				AD622ABF1D4B9D6C0041A19B /* swift-objects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +219,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -217,6 +227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -239,6 +250,7 @@
 				AD0EF2371D44C4E3002A594B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
