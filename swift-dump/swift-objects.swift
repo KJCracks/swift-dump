@@ -17,6 +17,13 @@ extension String {
     }
 }
 
+extension Dictionary {
+    mutating func merge<K, V>(dict: [K: V]){
+        for (k, v) in dict {
+            self.updateValue(v as! Value, forKey: k as! Key)
+        }
+    }
+}
 
 class swift_info {
     var Name: String = ""
@@ -101,10 +108,15 @@ class swift_class: swift_info {
     
     private func getFunctions() {
         
-        let pattern = Prefix + "[0-9+](.*)"
-        let demangled_functions =  get_demangled(RelevantSymbols.filter() {
+        var pattern = Prefix + "[0-9+](.*)"
+        var demangled_functions =  get_demangled(RelevantSymbols.filter() {
             $0 =~ pattern
             })
+        pattern = Prefix + "cf(.*)" //constructor functions
+        demangled_functions.merge(get_demangled(RelevantSymbols.filter() {
+            $0 =~ pattern
+            }))
+            
         for (mangled, demangled) in demangled_functions {
             //swift_test.Foo.swapTwoValues <A> (inout A, inout A) -> ()
             let fullFunctionName = demangled.componentsSeparatedByString(" ")[0]

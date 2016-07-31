@@ -76,6 +76,16 @@ func getRelevantSymbols(prefix: String) -> [String] {
 }
 
 
+func writeToFile(_string: String, file: String) {
+    do {
+        try _string.writeToFile(file, atomically: true, encoding: NSUTF8StringEncoding)
+    }
+    catch {
+        print("Error: Can't write dump to file " + file)
+    }
+}
+
+
 func get_symbols(binary: String) -> [String] {
     let output = NSTask_and_output("/usr/bin/xcrun", launchArguments: ["nm", "-g", binary]);
     var lineArray = [String]()
@@ -118,7 +128,8 @@ let path = Process.arguments[1]
 let binary = (path as NSString).lastPathComponent
 
 //only filter symbols that contain the binary's name
-symbols = get_symbols(path).filter() { nil != $0.rangeOfString(binary) }
+symbols = get_symbols(path)
+    //.filter() { nil != $0.rangeOfString(binary) }
 
 NSLog("symbols %@", symbols)
 
@@ -130,13 +141,14 @@ let tma_symbols = symbols.filter() {
 for symbol in tma_symbols {
     //_TMaC10swift_test3Foo
     var prefix = symbol.substringFromIndex(symbol.startIndex.advancedBy(4))
-    var type_name = get_demangled(symbol).componentsSeparatedByString(" ").last?.componentsSeparatedByString(".").last
+    print("prefix " + prefix)
+    var type_name = get_demangled(symbol).componentsSeparatedByString(" ").last
     print("Generating dump for type name " + type_name!)
     let type_char = symbol[symbol.startIndex.advancedBy(4)]
     switch type_char {
     case "C":
         var _class = swift_class(class_prefix: prefix, class_name: type_name!)
-        print(_class.generate(0))
+        writeToFile(_class.generate(0), file: type_name! + ".swift")
         break
     
         
@@ -145,8 +157,6 @@ for symbol in tma_symbols {
         break
     }
 }
-
-
 
 
 
